@@ -15,10 +15,13 @@
 
 @implementation ViewController
 
-- (void)viewDidLoad
+- (void)loadView
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 480-20-44)];
+    self.view = view;
+    [view release];
+    
+    self.title = @"Three20Demo";
     
     _arrayName = [[NSArray alloc] initWithObjects:
                   @"three20",
@@ -28,24 +31,23 @@
                             NSStringFromClass([TTPhotoViewController class]),
                             nil];
     
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, self.view.bounds.size.height) style:UITableViewStyleGrouped];
+    _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     [self.view addSubview:_tableView];
     
-//    NSLog(@"ViewController ---------- viewDidLoad");
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-//    NSLog(@"ViewController ---------- viewWillAppear:");
+//    [self.navigationController setNavigationBarHidden:NO animated:YES];
     
-    self.navigationController.navigationBarHidden = YES;
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
+    backItem.title = @"返回";
+    self.navigationItem.backBarButtonItem = backItem;
+    [backItem release];
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewDidLoad
 {
-//    NSLog(@"ViewController ---------- viewDidAppear:");
+    [super viewDidLoad];
+	// Do any additional setup after loading the view, typically from a nib.
 }
 
 #pragma mark -------------------- delegate --------------------
